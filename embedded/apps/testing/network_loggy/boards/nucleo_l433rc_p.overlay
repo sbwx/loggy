@@ -1,0 +1,84 @@
+/ {
+	zephyr,user {
+		/* adjust channel number according to pinmux in board.dts */
+		io-channels = <&adc1 5>, <&adc1 6>, <&adc1 8>, <&adc1 9>;
+	};
+
+	leds: leds {
+		ch1_high_led: ch1_high_led {
+			gpios = <&gpiob 4 GPIO_ACTIVE_HIGH>;
+			label = "Channel 1 High Alarm LED";
+		};
+		ch1_low_led: ch1_low_led {
+			gpios = <&gpiob 5 GPIO_ACTIVE_HIGH>;
+			label = "Channel 1 Low Alarm LED";
+		};
+		ch2_high_led: ch2_high_led {
+			gpios = <&gpioa 11 GPIO_ACTIVE_HIGH>;
+			label = "Channel 2 High Alarm LED";
+		};
+		ch2_low_led: ch2_low_led {
+			gpios = <&gpioa 8 GPIO_ACTIVE_HIGH>;
+			label = "Channel 2 Low Alarm LED";
+		};
+		ch3_high_led: ch3_high_led {
+			gpios = <&gpiob 1 GPIO_ACTIVE_HIGH>;
+			label = "Channel 3 High Alarm LED";
+		};
+		ch3_low_led: ch3_low_led {
+			gpios = <&gpiob 6 GPIO_ACTIVE_HIGH>;
+			label = "Channel 3 Low Alarm LED";
+		};
+		ch4_high_led: ch4_high_led {
+			gpios = <&gpiob 7 GPIO_ACTIVE_HIGH>;
+			label = "Channel 4 High Alarm LED";
+		};
+		ch4_low_led: ch4_low_led {
+			gpios = <&gpiob 0 GPIO_ACTIVE_HIGH>;
+			label = "Channel 4 Low Alarm LED";
+		};
+	};
+};
+
+&lpuart1 {
+	status = "okay";
+	current-speed = <4800>;
+	tx-invert;
+};
+
+&adc1 {
+    status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	st,adc-clock-source = "SYNC";
+	st,adc-prescaler = <4>;
+
+	channel@5 {
+		reg = <0x05>;
+		zephyr,gain = "ADC_GAIN_1";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,resolution = <12>;
+	};
+    channel@6 {
+		reg = <0x06>;
+		zephyr,gain = "ADC_GAIN_1";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,resolution = <12>;
+	};
+    channel@8 {
+		reg = <0x08>;
+		zephyr,gain = "ADC_GAIN_1";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,resolution = <12>;
+	};
+    channel@9 {
+		reg = <0x09>;
+		zephyr,gain = "ADC_GAIN_1";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,resolution = <12>;
+	};
+};

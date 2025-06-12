@@ -1,0 +1,60 @@
+&spi1 {
+    status = "okay";
+    sdhc0: sdhc@0 {
+        compatible = "zephyr,sdhc-spi-slot";
+        reg = <0>;
+        status = "okay";
+        mmc {
+            compatible = "zephyr,sdmmc-disk";
+            disk-name = "SD";
+            status = "okay";
+        };
+        spi-max-frequency = <25000000>;
+    };
+};
+
+/ {
+    lcdgpio: lcdgpio {
+        compatible = "gpio-leds";
+        lcd_reset: lcd_reset {
+            gpios = <&gpioa 8 GPIO_ACTIVE_HIGH>;
+        };
+        lcd_rs: lcd_rs {
+            gpios = <&gpiob 4 GPIO_ACTIVE_HIGH>;
+        };
+        lcd_rw: lcd_rw {
+            gpios = <&gpiob 5 GPIO_ACTIVE_HIGH>;
+        };
+        lcd_e: lcd_e {
+            gpios = <&gpioa 8 GPIO_ACTIVE_HIGH>;
+        };
+        lcd_d0: lcd_d0 {
+            gpios = <&gpioa 0 GPIO_ACTIVE_HIGH>;
+        };
+        lcd_d1: lcd_d1 {
+            gpios = <&gpiob 1 GPIO_ACTIVE_HIGH>;
+        };
+        lcd_d2: lcd_d2 {
+            gpios = <&gpiob 6 GPIO_ACTIVE_HIGH>;
+        };
+        lcd_d3: lcd_d3 {
+            gpios = <&gpiob 7 GPIO_ACTIVE_HIGH>;
+        };
+        lcd_d4: lcd_d4 {
+            gpios = <&gpiob 3 GPIO_ACTIVE_HIGH>;
+        };
+        lcd_d5: lcd_d5 {
+            gpios = <&gpioa 4 GPIO_ACTIVE_HIGH>;
+        };
+        lcd_d6: lcd_d6 {
+            gpios = <&gpioa 10 GPIO_ACTIVE_HIGH>;
+        };
+        lcd_d7: lcd_d7 {
+            gpios = <&gpioa 9 GPIO_ACTIVE_HIGH>;
+        };
+    };
+    
+    aliases {
+        rtc= &rtc;
+    };
+};

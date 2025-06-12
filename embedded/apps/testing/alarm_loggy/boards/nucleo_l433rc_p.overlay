@@ -1,0 +1,24 @@
+/ {
+	chosen {
+		zephyr,console = &usart1;
+	};
+    alarmgpio: alarmgpio {
+        compatible = "gpio-leds";
+        alarm_in: alarm_in {
+            gpios = <&gpiob 15 GPIO_ACTIVE_HIGH>;
+        };
+        alarm_clk: alarm_clk {
+            gpios = <&gpiob 13 GPIO_ACTIVE_HIGH>;
+        };
+        alarm_latch: alarm_latch {
+            gpios = <&gpiob 12 GPIO_ACTIVE_HIGH>;
+        };
+        alarm_enable: alarm_enable {
+            gpios = <&gpiob 14 GPIO_ACTIVE_HIGH>;
+        };
+    };
+};
+
+&usart1 {
+	status = "okay";
+};

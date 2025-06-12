@@ -1,0 +1,29 @@
+/ {
+    chosen {
+		zephyr,console = &usart1;
+	};
+
+    adc_gpio: adc_gpio {
+        compatible = "gpio-leds";
+        adc_reset: adc_reset {
+            gpios = <&gpioa 3 GPIO_ACTIVE_HIGH>;
+            label = "adc reset pin";
+        };
+    };
+};
+
+&spi1 {
+    status = "okay";
+    cs-gpios = <&gpioa 18 GPIO_ACTIVE_LOW>;
+    ads1118: ads1118@0 {
+        compatible = "vnd,spi-device";
+        reg = <0>;
+        spi-max-frequency = <1000000>;
+        label = "ADS1118";
+        status = "okay";
+    };
+};
+
+&usart1 {
+	status = "okay";
+};

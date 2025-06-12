@@ -1,0 +1,8 @@
+&i2c1 {
+	status = "okay";
+	accel: accelerometer@18 {
+		status = "okay";
+		compatible = "st,lis2dh";
+		reg = <0x18>;
+	};
+};

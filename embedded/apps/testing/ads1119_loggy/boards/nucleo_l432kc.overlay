@@ -1,0 +1,41 @@
+/ {
+	zephyr,user {
+		/* adjust channel number according to pinmux in board.dts */
+		io-channels = <&ads1119 0>;
+	};
+
+	muxgpio: muxgpio {
+        compatible = "gpio-leds";
+        mux_s0: mux_s0 {
+            gpios = <&gpioa 0 GPIO_ACTIVE_HIGH>;
+        };
+        mux_s1: mux_s1 {
+            gpios = <&gpioa 1 GPIO_ACTIVE_HIGH>;
+        };
+		mux_s2: mux_s2 {
+            gpios = <&gpioa 3 GPIO_ACTIVE_HIGH>;
+        };
+    };
+};
+
+&i2c3 {
+	pinctrl-0 = <&i2c3_scl_pa7 &i2c3_sda_pb4>;
+	pinctrl-names = "default";
+	clock-frequency = <I2C_BITRATE_FAST>;
+	status = "okay";
+    ads1119: ads1119@40 {
+        #io-channel-cells = <1>;
+        #address-cells = <1>;
+        #size-cells = <0>;
+		status = "okay";
+		compatible = "ti,ads1119";
+		reg = <0x40>;
+        channel@0 {
+            reg = <0x0>;
+            zephyr,gain = "ADC_GAIN_1";
+            zephyr,reference = "ADC_REF_EXTERNAL0";
+            zephyr,acquisition-time = <ADC_ACQ_TIME(ADC_ACQ_TIME_TICKS, 2)>;
+            zephyr,resolution = <15>;
+        };
+	};
+};

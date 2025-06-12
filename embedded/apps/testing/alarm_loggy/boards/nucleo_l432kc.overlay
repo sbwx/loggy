@@ -1,0 +1,11 @@
+/ {
+    alarmgpio: alarmgpio {
+        compatible = "gpio-leds";
+        alarm_in: alarm_in {
+            gpios = <&gpiob 5 GPIO_ACTIVE_HIGH>;
+        };
+        alarm_clk: alarm_clk {
+            gpios = <&gpioa 11 GPIO_ACTIVE_HIGH>;
+        };
+    };
+};

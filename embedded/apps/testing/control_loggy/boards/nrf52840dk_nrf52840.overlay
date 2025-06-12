@@ -1,0 +1,21 @@
+/*
+ * Copyright (c) 2023 Nordic Semiconductor ASA
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/* Because FAT FS needs at least 64kiB partition and default
+ * storage_partition is 32kiB for that board, we need to reorgatnize
+ * partitions to get at least 64KiB.
+ * This overlay removes image slot partitions and strips each of 64kiB,
+ * and removes the storage partition to add the additional 2*64kiB to
+ * it.
+ */
+
+&spi1 {
+    status = "okay";
+    sck-pin = <&gpio1 15 GPIO_ACTIVE_HIGH>;  /* SPI Clock Pin */
+    mosi-pin = <&gpio1 14 GPIO_ACTIVE_HIGH>; /* SPI MOSI Pin */
+    miso-pin = <&gpio1 13 GPIO_ACTIVE_HIGH>; /* SPI MISO Pin */
+    cs-pin = <&gpio1 12 GPIO_ACTIVE_HIGH>;   /* SPI Chip Select Pin */
+};
